@@ -7,7 +7,12 @@
 
 ## Requisitos:
 
-- PHP 7.0+
+- PHP 8.0+
+- Laravel 11
+
+## No Requier
+- database engine run
+- generated tables or orm use
 
 ## Dependencias
 Para utilizar este SDK, debes tener las siguientes extensiones de PHP instaladas: 
