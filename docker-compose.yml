@@ -1,0 +1,12 @@
+version: '4'
+services:
+  web:
+    container_name: transbank-sdk-php-webpay-rest-example
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: php artisan serve --host=0.0.0.0 --port=8000
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_DEBUG=true
