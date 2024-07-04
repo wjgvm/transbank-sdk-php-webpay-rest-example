@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OneclickController;
+use App\Http\Controllers\OneclickDeferredController;
 use App\Http\Controllers\PatpassComercioController;
 use App\Http\Controllers\TransaccionCompletaController;
 use App\Http\Controllers\TransaccionCompletaDeferredController;
@@ -215,21 +216,21 @@ Route::post('/oneclick/mall/refund', [OneclickController::class, 'refund']);
 Route::get('/oneclick/diferido/startInscription', function() {
     return view('oneclick/mall_diferido/start_inscription');
 });
-Route::post('/oneclick/diferido/startInscription', 'OneclickDeferredController@startInscription');
+Route::post('/oneclick/diferido/startInscription', [OneclickDeferredController::class, 'startInscription']);
 
-Route::delete('/oneclick/diferido/inscription', 'OneclickDeferredController@deleteInscription');
-Route::get('/oneclick/diferido/inscription', 'OneclickDeferredController@deleteInscription');
+Route::delete('/oneclick/diferido/inscription', [OneclickDeferredController::class, 'deleteInscription']);
+Route::get('/oneclick/diferido/inscription', [OneclickDeferredController::class, 'deleteInscription']);
 
-Route::any('/oneclick/diferido/responseUrl', 'OneclickDeferredController@finishInscription');
+Route::any('/oneclick/diferido/responseUrl', [OneclickDeferredController::class, 'finishInscription']);
 
 Route::get('/oneclick/mall/diferido/authorizeTransaction', function () {
 
     return view('/oneclick/diferido/authorize_mall');
 
 });
-Route::post('/oneclick/mall/diferido/authorizeTransaction', 'OneclickDeferredController@authorizeMall');
+Route::post('/oneclick/mall/diferido/authorizeTransaction', [OneclickDeferredController::class, 'authorizeMall']);
 
-Route::post('/oneclick/mall/diferido/transaction_status', 'OneclickDeferredController@transactionStatus');
+Route::post('/oneclick/mall/diferido/transaction_status', [OneclickDeferredController::class, 'transactionStatus']);
 
 Route::post('/oneclick/mall/diferido/refund', 'OneclickDeferredController@refund');
 
