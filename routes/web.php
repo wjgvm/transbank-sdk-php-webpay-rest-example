@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/', 'HomeController@welcome');
+Route::get('/', [HomeController::class,'welcome']);
 
 # Webpay Plus
 Route::get('/webpayplus/create', function () {
