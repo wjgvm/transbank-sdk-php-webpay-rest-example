@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OneclickController;
 use App\Http\Controllers\PatpassComercioController;
 use App\Http\Controllers\TransaccionCompletaController;
 use App\Http\Controllers\TransaccionCompletaDeferredController;
@@ -190,23 +191,23 @@ Route::post('/webpayplus/mall/diferido/transactionStatus', [WebpayPlusMallDeferr
 Route::get('/oneclick/startInscription', function() {
     return view('oneclick/start_inscription');
 });
-Route::post('/oneclick/startInscription', 'OneclickController@startInscription');
+Route::post('/oneclick/startInscription', [OneclickController::class, 'startInscription']);
 
-Route::delete('/oneclick/inscription', 'OneclickController@deleteInscription');
-Route::get('/oneclick/inscription', 'OneclickController@deleteInscription');
+Route::delete('/oneclick/inscription', [OneclickController::class, 'deleteInscription']);
+Route::get('/oneclick/inscription', [OneclickController::class, 'deleteInscription']);
 
-Route::any('/oneclick/responseUrl', 'OneclickController@finishInscription');
+Route::any('/oneclick/responseUrl', [OneclickController::class, 'finishInscription']);
 
 Route::get('/oneclick/mall/authorizeTransaction', function () {
 
     return view('/oneclick/authorize_mall');
 
 });
-Route::post('/oneclick/mall/authorizeTransaction', 'OneclickController@authorizeMall');
+Route::post('/oneclick/mall/authorizeTransaction', [OneclickController::class, 'authorizeMall']);
 
-Route::post('/oneclick/mall/transactionStatus', 'OneclickController@transactionStatus');
+Route::post('/oneclick/mall/transactionStatus', [OneclickController::class, 'transactionStatus']);
 
-Route::post('/oneclick/mall/refund', 'OneclickController@refund');
+Route::post('/oneclick/mall/refund', [OneclickController::class, 'refund']);
 
 
 # Oneclick Mall diferido
