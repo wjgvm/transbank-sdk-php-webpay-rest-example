@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TransaccionCompletaController;
 use App\Http\Controllers\TransaccionCompletaDeferredController;
+use App\Http\Controllers\TransaccionCompletaMallController;
 use App\Http\Controllers\WebpayPlusController;
 use App\Http\Controllers\WebpayPlusDeferredController;
 use App\Http\Controllers\WebpayPlusMallController;
@@ -132,22 +133,22 @@ Route::post('/transaccion_completa/diferido/refund', [TransaccionCompletaDeferre
 
 
 # Transaccion completa mall
-Route::get('/transaccion_completa/mall_create', 'TransaccionCompletaMallController@showMallCreate');
+Route::get('/transaccion_completa/mall_create', [TransaccionCompletaMallController::class, 'showMallCreate']);
 
 
-Route::post('/transaccion_completa/mall_create', 'TransaccionCompletaMallController@mallCreate');
+Route::post('/transaccion_completa/mall_create', [TransaccionCompletaMallController::class, 'mallCreate']);
 
-Route::post('/transaccion_completa/mall_installments', 'TransaccionCompletaMallController@mallInstallments');
+Route::post('/transaccion_completa/mall_installments', [TransaccionCompletaMallController::class, 'mallInstallments']);
 
 Route::get('/transaccion_completa/mall_commit', function () {
     return view('transaccion_completa/mall_commit');
 });
 
-Route::post('/transaccion_completa/mall_commit', 'TransaccionCompletaMallController@mallCommit');
+Route::post('/transaccion_completa/mall_commit', [TransaccionCompletaMallController::class, 'mallCommit']);
 
-Route::get('/transaccion_completa/mall_status/{token}', 'TransaccionCompletaMallController@mallStatus');
+Route::get('/transaccion_completa/mall_status/{token}', [TransaccionCompletaMallController::class, 'mallStatus']);
 
-Route::post('/transaccion_completa/mall_refund', 'TransaccionCompletaMallController@mallRefund');
+Route::post('/transaccion_completa/mall_refund', [TransaccionCompletaMallController::class, 'mallRefund']);
 
 # Patpass comercio
 
