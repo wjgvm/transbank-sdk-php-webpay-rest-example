@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WebpayPlusController;
 use App\Http\Controllers\WebpayPlusDeferredController;
+use App\Http\Controllers\WebpayPlusMallController;
 
 // Route::get('/', function () {
 //     return view('welcome');
