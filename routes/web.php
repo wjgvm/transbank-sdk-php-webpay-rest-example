@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransaccionCompletaController;
 use App\Http\Controllers\WebpayPlusController;
 use App\Http\Controllers\WebpayPlusDeferredController;
 use App\Http\Controllers\WebpayPlusMallController;
@@ -93,23 +94,23 @@ Route::get('/transaccion_completa/create', function () {
     return view('transaccion_completa/create');
 });
 
-Route::post('/transaccion_completa/create', 'TransaccionCompletaController@createTransaction');
+Route::post('/transaccion_completa/create', [TransaccionCompletaController::class, 'createTransaction']);
 
-Route::post('/transaccion_completa/installments', 'TransaccionCompletaController@installments');
+Route::post('/transaccion_completa/installments', [TransaccionCompletaController::class, 'installments']);
 
 Route::get('/transaccion_completa/transaction_commit', function () {
     return view('transaccion_completa/transaction_commit');
 });
 
-Route::post('/transaccion_completa/transaction_commit', 'TransaccionCompletaController@commit');
+Route::post('/transaccion_completa/transaction_commit', [TransaccionCompletaController::class, 'commit']);
 
 Route::get('/transaccion_completa/transaction_status', function () {
     return view('transaccion_completa/transaction_status');
 });
 
-Route::post('/transaccion_completa/transaction_status', 'TransaccionCompletaController@status');
+Route::post('/transaccion_completa/transaction_status', [TransaccionCompletaController::class, 'status']);
 
-Route::post('/transaccion_completa/refund', 'TransaccionCompletaController@refund');
+Route::post('/transaccion_completa/refund', [TransaccionCompletaController::class, 'refund']);
 
 # Transacción completa diferido.
 Route::get('/transaccion_completa/diferido/create', function () {
