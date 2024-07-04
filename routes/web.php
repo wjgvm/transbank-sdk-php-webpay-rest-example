@@ -224,14 +224,12 @@ Route::get('/oneclick/diferido/inscription', [OneclickDeferredController::class,
 Route::any('/oneclick/diferido/responseUrl', [OneclickDeferredController::class, 'finishInscription']);
 
 Route::get('/oneclick/mall/diferido/authorizeTransaction', function () {
-
     return view('/oneclick/diferido/authorize_mall');
-
 });
 Route::post('/oneclick/mall/diferido/authorizeTransaction', [OneclickDeferredController::class, 'authorizeMall']);
 
 Route::post('/oneclick/mall/diferido/transaction_status', [OneclickDeferredController::class, 'transactionStatus']);
 
-Route::post('/oneclick/mall/diferido/refund', 'OneclickDeferredController@refund');
+Route::post('/oneclick/mall/diferido/refund', [OneclickDeferredController::class, 'refund']);
 
-Route::post('/oneclick/mall/diferido/capture', 'OneclickDeferredController@transactionCapture');
+Route::post('/oneclick/mall/diferido/capture', [OneclickDeferredController::class, 'transactionCapture']);
