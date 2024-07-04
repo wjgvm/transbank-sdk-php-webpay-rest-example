@@ -10,6 +10,7 @@ use App\Http\Controllers\TransaccionCompletaMallController;
 use App\Http\Controllers\WebpayPlusController;
 use App\Http\Controllers\WebpayPlusDeferredController;
 use App\Http\Controllers\WebpayPlusMallController;
+use App\Http\Controllers\WebpayPlusMallDeferredController;
 use App\Http\Controllers\WebpayPlusMallDuesQrController;
 use App\Http\Controllers\WebpayPlusMallQrController;
 
@@ -167,22 +168,22 @@ Route::post('/patpass_comercio/voucherUrl', [PatpassComercioController::class, '
 Route::get('/webpayplus/mall/diferido/create', function () {
     return view('webpayplus/mall/diferido/create');
 });
-Route::post('/webpayplus/mall/diferido/create', 'WebpayPlusMallDeferredController@createMallDiferido');
+Route::post('/webpayplus/mall/diferido/create', [WebpayPlusMallDeferredController::class, 'createMallDiferido']);
 
-Route::any('/webpayplus/mall/diferido/returnUrl', 'WebpayPlusMallDeferredController@commitMallDiferido');
+Route::any('/webpayplus/mall/diferido/returnUrl', [WebpayPlusMallDeferredController::class, 'commitMallDiferido']);
 
 Route::get('/webpayplus/mall/diferido/capture', function () {
     return view('webpayplus/mall/diferido/capture');
 });
-Route::post('/webpayplus/mall/diferido/capture', 'WebpayPlusMallDeferredController@captureMallDiferido');
+Route::post('/webpayplus/mall/diferido/capture', [WebpayPlusMallDeferredController::class, 'captureMallDiferido']);
 
 
 Route::get('/webpayplus/mall/diferido/refund', function () {
     return view('webpayplus/mall/diferido/refund');
 });
-Route::post('/webpayplus/mall/diferido/refund', 'WebpayPlusMallDeferredController@refundMallDiferido');
+Route::post('/webpayplus/mall/diferido/refund', [WebpayPlusMallDeferredController::class, 'refundMallDiferido']);
 
-Route::post('/webpayplus/mall/diferido/transactionStatus', 'WebpayPlusMallDeferredController@statusMallDiferido');
+Route::post('/webpayplus/mall/diferido/transactionStatus', [WebpayPlusMallDeferredController::class, 'statusMallDiferido']);
 
 # Oneclick Mall
 
