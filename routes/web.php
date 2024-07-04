@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WebpayPlusController;
+use App\Http\Controllers\WebpayPlusDeferredController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -30,36 +31,36 @@ Route::post('/webpayplus/transactionStatus', [WebpayPlusController::class,'getTr
 Route::get('/webpayplus/diferido/create', function () {
     return view('webpayplus/diferido/create');
 });
-Route::post('/webpayplus/diferido/create', 'WebpayPlusDeferredController@createDiferido');
+Route::post('/webpayplus/diferido/create', [WebpayPlusDeferredController::class,'createDiferido']);
 
-Route::any('/webpayplus/diferido/returnUrl', 'WebpayPlusDeferredController@commitDiferidoTransaction');
+Route::any('/webpayplus/diferido/returnUrl', [WebpayPlusDeferredController::class,'commitDiferidoTransaction']);
 
 Route::get('/webpayplus/diferido/capture', function () {
     return view('webpayplus/diferido/diferido');
 });
-Route::post('/webpayplus/diferido/capture', 'WebpayPlusDeferredController@captureDiferido');
+Route::post('/webpayplus/diferido/capture', [WebpayPlusDeferredController::class,'captureDiferido']);
 
 
 Route::get('/webpayplus/diferido/refund', function () {
     return view('webpayplus/diferido/refund');
 });
-Route::post('/webpayplus/diferido/refund', 'WebpayPlusDeferredController@refundDiferido');
+Route::post('/webpayplus/diferido/refund', [WebpayPlusDeferredController::class,'refundDiferido']);
 
-Route::post('/webpayplus/diferido/status', 'WebpayPlusDeferredController@statusDiferido');
+Route::post('/webpayplus/diferido/status', [WebpayPlusDeferredController::class,'statusDiferido']);
 
 
 
 
 # Webpay Plus Mall
 
-Route::get('/webpayplus/createMall', 'WebpayPlusMallController@createMall');
-Route::post('/webpayplus/createMall', 'WebpayPlusMallController@createdMallTransaction');
+Route::get('/webpayplus/createMall', [WebpayPlusMallController::class,'createMall']);
+Route::post('/webpayplus/createMall', [WebpayPlusMallController::class,'createdMallTransaction']);
 
-Route::any('/webpayplus/mallReturnUrl', 'WebpayPlusMallController@commitMallTransaction');
+Route::any('/webpayplus/mallReturnUrl', [WebpayPlusMallController::class,'commitMallTransaction']);
 
-Route::get('/webpayplus/mallRefund', 'WebpayPlusMallController@showMallRefund');
-Route::post('/webpayplus/mallRefund', 'WebpayPlusMallController@refundMallTransaction');
-Route::post('/webpayplus/mallTransactionStatus', 'WebpayPlusMallController@getMallTransactionStatus');
+Route::get('/webpayplus/mallRefund', [WebpayPlusMallController::class,'showMallRefund']);
+Route::post('/webpayplus/mallRefund', [WebpayPlusMallController::class,'refundMallTransaction']);
+Route::post('/webpayplus/mallTransactionStatus', [WebpayPlusMallController::class,'getMallTransactionStatus']);
 
 # Webpay Plus Cuotas QR
 
