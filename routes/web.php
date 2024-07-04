@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PatpassComercioController;
 use App\Http\Controllers\TransaccionCompletaController;
 use App\Http\Controllers\TransaccionCompletaDeferredController;
 use App\Http\Controllers\TransaccionCompletaMallController;
@@ -156,10 +157,10 @@ Route::get('/patpass_comercio/create-form', function () {
 
     return view('patpass_comercio/create_form');
 });
-Route::post('/patpass_comercio/create-form/', 'PatpassComercioController@startTransaction');
-Route::post('/patpass_comercio/returnUrl', 'PatpassComercioController@finishStartTransaction');
-Route::post('/patpass_comercio/status', 'PatpassComercioController@status');
-Route::post('/patpass_comercio/voucherUrl', 'PatpassComercioController@displayVoucher');
+Route::post('/patpass_comercio/create-form/', [PatpassComercioController::class, 'startTransaction']);
+Route::post('/patpass_comercio/returnUrl', [PatpassComercioController::class, 'finishStartTransaction']);
+Route::post('/patpass_comercio/status', [PatpassComercioController::class, 'status']);
+Route::post('/patpass_comercio/voucherUrl', [PatpassComercioController::class, 'displayVoucher']);
 
 
 # Webpay Plus Mall diferido
