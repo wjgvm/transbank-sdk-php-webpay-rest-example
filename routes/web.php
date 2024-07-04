@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TransaccionCompletaController;
+use App\Http\Controllers\TransaccionCompletaDeferredController;
 use App\Http\Controllers\WebpayPlusController;
 use App\Http\Controllers\WebpayPlusDeferredController;
 use App\Http\Controllers\WebpayPlusMallController;
@@ -117,17 +118,17 @@ Route::get('/transaccion_completa/diferido/create', function () {
     return view('transaccion_completa/diferido/create');
 })->name("completa.diferido.index");
 
-Route::post('/transaccion_completa/diferido/create', 'TransaccionCompletaDeferredController@createTransaction')->name("completa.deferred.create");
+Route::post('/transaccion_completa/diferido/create', [TransaccionCompletaDeferredController::class, 'createTransaction'])->name("completa.deferred.create");
 
-Route::post('/transaccion_completa/diferido/installments', 'TransaccionCompletaDeferredController@installments')->name("completa.deferred.installments");
+Route::post('/transaccion_completa/diferido/installments', [TransaccionCompletaDeferredController::class, 'installments'])->name("completa.deferred.installments");
 
-Route::post('/transaccion_completa/diferido/commit', 'TransaccionCompletaDeferredController@commit')->name("completa.deferred.commit");
+Route::post('/transaccion_completa/diferido/commit', [TransaccionCompletaDeferredController::class, 'commit'])->name("completa.deferred.commit");
 
-Route::post('/transaccion_completa/diferido/capture', 'TransaccionCompletaDeferredController@capture')->name("completa.deferred.capture");
+Route::post('/transaccion_completa/diferido/capture', [TransaccionCompletaDeferredController::class, 'capture'])->name("completa.deferred.capture");
 
-Route::post('/transaccion_completa/diferido/transaction_status', 'TransaccionCompletaDeferredController@status')->name("completa.deferred.status");
+Route::post('/transaccion_completa/diferido/transaction_status', [TransaccionCompletaDeferredController::class, 'status'])->name("completa.deferred.status");
 
-Route::post('/transaccion_completa/diferido/refund', 'TransaccionCompletaDeferredController@refund')->name("completa.deferred.refund");
+Route::post('/transaccion_completa/diferido/refund', [TransaccionCompletaDeferredController::class, 'refund'])->name("completa.deferred.refund");
 
 
 # Transaccion completa mall
