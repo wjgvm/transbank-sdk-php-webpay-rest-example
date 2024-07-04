@@ -7,6 +7,7 @@ use App\Http\Controllers\WebpayPlusController;
 use App\Http\Controllers\WebpayPlusDeferredController;
 use App\Http\Controllers\WebpayPlusMallController;
 use App\Http\Controllers\WebpayPlusMallDuesQrController;
+use App\Http\Controllers\WebpayPlusMallQrController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -77,14 +78,14 @@ Route::post('/webpayplusduesqr/mallTransactionStatus', [WebpayPlusMallDuesQrCont
 
 # Webpay Plus Mall QR
 
-Route::get('/webpayplusqr/createMall', 'WebpayPlusMallQrController@createMall');
-Route::post('/webpayplusqr/createMall', 'WebpayPlusMallQrController@createdMallTransaction');
+Route::get('/webpayplusqr/createMall', [WebpayPlusMallQrController::class, 'createMall']);
+Route::post('/webpayplusqr/createMall', [WebpayPlusMallQrController::class, 'createdMallTransaction']);
 
-Route::any('/webpayplusqr/mallReturnUrl', 'WebpayPlusMallQrController@commitMallTransaction');
+Route::any('/webpayplusqr/mallReturnUrl', [WebpayPlusMallQrController::class, 'commitMallTransaction']);
 
-Route::get('/webpayplusqr/mallRefund', 'WebpayPlusMallQrController@showMallRefund');
-Route::post('/webpayplusqr/mallRefund', 'WebpayPlusMallQrController@refundMallTransaction');
-Route::post('/webpayplusqr/mallTransactionStatus', 'WebpayPlusMallQrController@getMallTransactionStatus');
+Route::get('/webpayplusqr/mallRefund', [WebpayPlusMallQrController::class, 'showMallRefund']);
+Route::post('/webpayplusqr/mallRefund', [WebpayPlusMallQrController::class, 'refundMallTransaction']);
+Route::post('/webpayplusqr/mallTransactionStatus', [WebpayPlusMallQrController::class, 'getMallTransactionStatus']);
 
 
 # Transaccion Completa
